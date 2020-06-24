@@ -43,7 +43,6 @@ function obtenerUnidVen(){ //FUNCION PARA CARGAR EL ARREGLO DE UNIDADES VENDIDAS
 
       for (i = 1; i < 13; i++) { 
         id = "CantVent"+i;
-        console.log(tm[i-1]);
         document.getElementById(id).innerHTML = cv[i-1];
       }
 }
@@ -83,12 +82,39 @@ function obtenerCostoUnidad(){
     }
 }
 
-function obtenerCostoTotal(){//FUNCION PARA CARGAR EL ARREGLO DE COSTO TOTAL Y LUEGO MOSTRARLO EN EL HTML POR MEDIO DEL ID
-  for (i = 0; i < 12; i++) {//EN ESTA FUNCION MULTIPLICO LAS CANTIDAD DE UNIDADES VENDIDAS  
+function obtenerCantProducida(){ 
+  for (i = 0; i < 12; i++) { 
+      aleatorio = Math.random();
+      if (aleatorio<0.04) {
+        cantprod.push(13000);
+        } else if (aleatorio<0.08) {
+          cantprod.push(14000);
+        } else if(aleatorio<0.16){
+          cantprod.push(15000);
+        } else if (aleatorio<0.2999) {
+          cantprod.push(16000)
+        } else{
+          cantprod.push(17000)
+        }
+    }
+
+    for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
+      id = "CantProdProd"+i;
+      document.getElementById(id).innerHTML = cantprod[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
+    }
+}
+
+function obtenerCostoTotal(){// ANTES DE ESTA FUNCION TENEMOS QUE EJECUTAR LA DE OBTENERCANTPRODUCIDA O SINO NO PUEDE MULTIPLICAR
+  for (i = 0; i < 12; i++) { //MULTIPLICO EL COSTO POR UNIDAD CON LA CANTIDAD DE PRODUCTOS PRODUCIDOS Y GUARDO EN EL ARREGLO ct
+      ct.push(cu[i]*cantprod[i]);
+      console.log(cantprod[i]);
       
     }
 
- 
+    for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
+      id = "CostTot"+i;
+      document.getElementById(id).innerHTML = ct[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
+    }
 }
 
 
@@ -101,5 +127,7 @@ function ejecutarFunciones() { //ESTA FUNCION AGRUPA EL CONJUNTO DE FUNCIONES A 
     obtenerUnidVen();
     obtenerVentas();
     obtenerCostoUnidad();
+    obtenerCantProducida();
     obtenerCostoTotal();
+
 }
