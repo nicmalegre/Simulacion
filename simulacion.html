@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>GRUPO 6</title>
+
+  <!-- CARGAR BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 
+  <!--  LINK PARA LAS LETRAS -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Playball" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+  <!-- LINK PARA AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- CSS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <!-- JS -->
+
+</head>
+
+
+<body id="page-top">
+  
+  <!-- PIZARRON DE NOTICIAS INTERESANTES -->
+  <br>
+  <!-- CONTENIDO DE LA PAGINA PRINCIPAL - NIVEL INICIAL -->
+  <div id="seccion-archivos" class="container-fluid">  
+        <div class="text-center" style="background-color: #EFEFEF;">
+          <div class="table-responsive" style="margin-bottom: 15px;">
+            <table class="table">
+              <thead>
+                <tr style="background-color: #343a40; color: white; font-size: 16px;">
+                  <th>Mes</th>
+                  <th>Tipo de Mercado</th>
+                  <th>Cantidad de Ventas</th>
+                  <th>Total Ventas</th>
+                  <th>Costo por Unidad</th>
+                  <th>Costo Total</th>
+                  <th>Can. Prod. Producidos</th>
+                  <th>Dem. No Satisf</th>
+                  <th>Costo de Oportunidad</th>
+                  <th>GANANCIA MENSUAL</th>
+                </tr>
+              </thead>
+    
+              <tbody>
+                <tr>
+                  <td><p id="NroDia"></p>Mes 1</td> <!-- COLUMNA PARA EL DIA QUE ES -->
+                  <td><p id="CliMes1"></p></td> <!-- COLUMNA PARA INDICAR CUANTOS CLIENTES LLEGARON -->
+                  <td><p id="NroCliente"></p></td><!-- COLUMNA PARA IR EL NRO DE CLIENTE  -->
+                  <td><p id="CantHabit"></p></td> <!-- COLUMNA PARA HABITACIONES  -->
+                  <td><p id="DiasAlojado"></td> <!-- COLUMNA PARA CANTIDAD DE DIAS QUE SE QUEDA  -->
+                </tr>
+                <tr>
+                  <td><p id="NroDia"></p>Mes 2</td> <!-- COLUMNA PARA EL DIA QUE ES -->
+                  <td><p id="CliMes2"></p></td> <!-- COLUMNA PARA INDICAR CUANTOS CLIENTES LLEGARON -->
+                  <td><p id="NroCliente"></p></td><!-- COLUMNA PARA IR EL NRO DE CLIENTE  -->
+                  <td><p id="CantHabit"></p></td> <!-- COLUMNA PARA HABITACIONES  -->
+                  <td><p id="DiasAlojado"></td> <!-- COLUMNA PARA CANTIDAD DE DIAS QUE SE QUEDA  -->
+                </tr>
+                <tr>
+                  <td><p id="NroDia"></p>Mes 3</td> <!-- COLUMNA PARA EL DIA QUE ES -->
+                  <td><p id="CliMes3"></p></td> <!-- COLUMNA PARA INDICAR CUANTOS CLIENTES LLEGARON -->
+                  <td><p id="NroCliente"></p></td><!-- COLUMNA PARA IR EL NRO DE CLIENTE  -->
+                  <td><p id="CantHabit"></p></td> <!-- COLUMNA PARA HABITACIONES  -->
+                  <td><p id="DiasAlojado"></td> <!-- COLUMNA PARA CANTIDAD DE DIAS QUE SE QUEDA  -->
+                </tr>
+                <tr>
+                  <td><p id="NroDia"></p>Mes 4</td> <!-- COLUMNA PARA EL DIA QUE ES -->
+                  <td><p id="CliMes4"></p></td> <!-- COLUMNA PARA INDICAR CUANTOS CLIENTES LLEGARON -->
+                  <td><p id="NroCliente"></p></td><!-- COLUMNA PARA IR EL NRO DE CLIENTE  -->
+                  <td><p id="CantHabit"></p></td> <!-- COLUMNA PARA HABITACIONES  -->
+                  <td><p id="DiasAlojado"></td> <!-- COLUMNA PARA CANTIDAD DE DIAS QUE SE QUEDA  -->
+                </tr>
+              </tbody>
+ 
+            </table>
+          </div>
+        </div>
+
+        <button onclick="ejecutarFunciones()" style="cursor:pointer;">SIMULAR</button> <!-- BOTON PARA SIMULAR Y EJECUTAR FUNCIONES-->
+  </div>
+
+  <!-- AGREGAMOS LOS LINKS PARA CARGAR BOOSTRAP-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- AGREGAMOS LAS FUNCIONES DE JS -->
+  <script src="simulacion.js"></script>
+</body>
+</html>
