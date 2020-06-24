@@ -35,8 +35,56 @@
   <!-- PIZARRON DE NOTICIAS INTERESANTES -->
   <br>
   <!-- CONTENIDO DE LA PAGINA PRINCIPAL - NIVEL INICIAL -->
-  <div id="seccion-archivos" class="container-fluid">  
-        <div class="text-center" style="background-color: #EFEFEF;">
+  <div id="seccion-archivos" class="container">  
+    <h3 class="text-center">SIMULANDO</h3>
+    <h5 class="text-center" style="margin-bottom: 15px;">Empresa fabricante de celulares</h5>
+    <p>
+        Debido al éxito de ventas del celular X7, una empresa fabricante de celulares está considerando
+        fabricar y lanzar a la venta una versión mejorada del mismo, donde el hardware será idéntico pero el
+        software vendrá mejorado.
+        Dos de los factores de incertidumbre de la empresa son el volumen de ventas y el precio por unidad, 
+        que dependerán de la demanda y la competencia. Para obtener información, se realizó un estudio de mercados, 
+        y se encontró que el mercado de teléfonos celulares puede ser lento, estable o demandante. En un mercado lento, 
+        se esperan vender 10.000 unidades por mes a un precio de $15.000 por unidad; cuando el mercado es estable, 
+        se esperan vender 14.000 unidades a un precio de $12.000 por unidad, y si el mercado esdemandante, 
+        se espera vender 22.000 unidades por mes, pero la alta demanda genera más competencia y el precio de venta por unidad cae a $8.000. 
+    </p>
+    <p>
+        La fábrica tiene también costos fijos de $600.000 durante el primer semestre, y aumentará a $900.000 en el segundo semestre. 
+        Si durante un mes la oferta no alcanza para satisfacer la cantidad demandada, cada demanda no satisfecha genera un 
+        costo de oportunidad valuado en $1000 por unidad. En caso de que sobren celulares, 
+        quedan en inventario para ser vendidos en el siguiente mes. 
+    </p>
+    <p>
+        Para obtener la ganancia mensual, se deben sumar los ingresos por ventas de celulares (​IVC​), y a 
+        esa ganancia bruta restar los costos por unidad (​CU​) y costos fijos mensuales (​CFM​), más los                
+        egresos por demanda no satisfecha (​DNS​). <b>GANANCIA MENSUAL = IVC - CU - CFM - DNS</b>. Se desea realizar un estudio de 
+        simulación utilizando el método Montecarlo con los datos indicados, a lo largo de 12 meses. 
+    </p>
+    <p>Las tablas a utilizar son:</p>
+    <div class="row">
+      <div class="col-lg-4">
+          <img class="img-fluid" src="tabla1.JPG">
+      </div>
+      <div class="col-lg-4">
+          <img class="img-fluid" src="tabla2.JPG">        
+      </div>
+      <div class="col-lg-4">
+        <img class="img-fluid" src="tabla3.JPG">        
+      </div>
+    </div>
+
+    <p>
+        <h5>Objetivo:</h5> ​Estimar cuál sería la ganancia neta para un año de producción de la empresa de celulares 
+        analizando las condiciones de mercado indicadas en el escenario.
+    </p>   
+
+    <h5 class="text-center">¿Entendido?</h5>
+    <div class="text-center">
+      <button class="btn btn-success" style="cursor:pointer; margin-bottom: 20px;"><a href="#btnSimular" style="color: white;">¡A SIMULAR!</a></button> <!-- BOTON PARA SIMULAR Y EJECUTAR FUNCIONES-->
+    </div>
+        
+    <div class="text-center" style="background-color: #EFEFEF;">
           <div class="table-responsive" style="margin-bottom: 15px;">
             <table class="table">
               <thead>
@@ -219,7 +267,7 @@
         </div>
 
         <div class="text-center">
-          <button class="btn btn-primary" style="cursor:pointer; margin-bottom: 10px;" onclick="ejecutarFunciones()" >SIMULAR</button> <!-- BOTON PARA SIMULAR Y EJECUTAR FUNCIONES-->
+          <button id="btnSimular" class="btn btn-primary" style="cursor:pointer; margin-bottom: 10px;" onclick="ejecutarFunciones()" >SIMULAR</button> <!-- BOTON PARA SIMULAR Y EJECUTAR FUNCIONES-->
         </div>
   </div>
 

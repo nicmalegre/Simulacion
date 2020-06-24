@@ -26,7 +26,6 @@ function inicializar(){
 function obtenerTipoMer(){ 
     for (i = 0; i < 12; i++) { //EN ESTA FUNCION POR CADA MES TIRO UN ALEATORIO Y DEPENDIENDO DE ESTE AGREGO EL TIPO DE MERCADO AL ARREGLO
         aleatorio = Math.random();
-        console.log(aleatorio);
         if (aleatorio<0.125) {
             tm.push("Lento");
           } else if (aleatorio<0.75) {
@@ -39,7 +38,6 @@ function obtenerTipoMer(){
       for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
         id = "TM"+i;
         document.getElementById(id).innerHTML = tm[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
-        console.log(tm[i-1]);
       }
 }
 
