@@ -1,23 +1,32 @@
 //DEFINO VARIABLES GLOBALES
-var tm = []; //CREO UN ARREGLO DONDE VOY A IR CARGANDO QUE TIPO DE MERCADO SALE PARA CADA MES 
-var cv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO  LA CANTIDAD DE UNIDADES VENDIDAS PARA CADA MES (UNIDADES)
-var tv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LAS VENTAS PARA CADA MES (PLATA)
-var cu = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO EL COSTO POR UNIDAD DE CADA MES
-var ct = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LOS COSTOS TOTALES DE CADA MES
-var cantprod = []; //CREO UN ARREGLO PARA ALMACENAR CUANTOS PROD PRODUCIDOS HAY PARA CADA MES
-var demnosat = []; //CREO UN ARREGLO PARA ALMACENAR LA DEMANDA NO SATISFECHA DE CADA MES
-var costOp = []; //CREO UN ARREGLO PARA ALMACENAR EL COSTO DE OPORTUNIDAD DE CADA MES
-var ganancia = []; //EN ESTE ARREGLO VOY ALMACENANDO LA GANANCIA DE CADA MES
+  var tm = []; //CREO UN ARREGLO DONDE VOY A IR CARGANDO QUE TIPO DE MERCADO SALE PARA CADA MES 
+  var cv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO  LA CANTIDAD DE UNIDADES VENDIDAS PARA CADA MES (UNIDADES)
+  var tv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LAS VENTAS PARA CADA MES (PLATA)
+  var cu = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO EL COSTO POR UNIDAD DE CADA MES
+  var ct = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LOS COSTOS TOTALES DE CADA MES
+  var cantprod = []; //CREO UN ARREGLO PARA ALMACENAR CUANTOS PROD PRODUCIDOS HAY PARA CADA MES
+  var demnosat = []; //CREO UN ARREGLO PARA ALMACENAR LA DEMANDA NO SATISFECHA DE CADA MES
+  var costOp = []; //CREO UN ARREGLO PARA ALMACENAR EL COSTO DE OPORTUNIDAD DE CADA MES
+  var ganancia = []; //EN ESTE ARREGLO VOY ALMACENANDO LA GANANCIA DE CADA MES
+
+function inicializar(){
+   tm = []; //CREO UN ARREGLO DONDE VOY A IR CARGANDO QUE TIPO DE MERCADO SALE PARA CADA MES 
+   cv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO  LA CANTIDAD DE UNIDADES VENDIDAS PARA CADA MES (UNIDADES)
+   tv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LAS VENTAS PARA CADA MES (PLATA)
+   cu = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO EL COSTO POR UNIDAD DE CADA MES
+   ct = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LOS COSTOS TOTALES DE CADA MES
+   cantprod = []; //CREO UN ARREGLO PARA ALMACENAR CUANTOS PROD PRODUCIDOS HAY PARA CADA MES
+   demnosat = []; //CREO UN ARREGLO PARA ALMACENAR LA DEMANDA NO SATISFECHA DE CADA MES
+   costOp = []; //CREO UN ARREGLO PARA ALMACENAR EL COSTO DE OPORTUNIDAD DE CADA MES
+   ganancia = []; //EN ESTE ARREGLO VOY ALMACENANDO LA GANANCIA DE CADA MES
+}
 
 // A PARTIR DE ACA PARA ABAJO VAN TODAS LAS FUNCIONES
-function random(min,max) { //DEVUELVE UN RANDOM ENTRE 3 Y 10
-    return (parseInt(Math.random()*(max - min)+ min)); 
-    
-}
 
 function obtenerTipoMer(){ 
     for (i = 0; i < 12; i++) { //EN ESTA FUNCION POR CADA MES TIRO UN ALEATORIO Y DEPENDIENDO DE ESTE AGREGO EL TIPO DE MERCADO AL ARREGLO
         aleatorio = Math.random();
+        console.log(aleatorio);
         if (aleatorio<0.125) {
             tm.push("Lento");
           } else if (aleatorio<0.75) {
@@ -30,6 +39,7 @@ function obtenerTipoMer(){
       for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
         id = "TM"+i;
         document.getElementById(id).innerHTML = tm[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
+        console.log(tm[i-1]);
       }
 }
 
@@ -157,7 +167,7 @@ function obtenerGanancia(){
 
     for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
       id = "Ganancia"+i;
-      document.getElementById(id).innerHTML = ganancia[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
+      document.getElementById(id).innerHTML = "$" + ganancia[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
     }
 }
 
@@ -165,10 +175,9 @@ function obtenerGananciaTotal(){
   var gananciaTotal = 0; //Hay que inicializar a 0 porque es un acumulador
   for (i = 0; i < 12; i++) { 
     gananciaTotal = gananciaTotal + ganancia[i]; //Sumo en una variable las ganancias de cada mes para obtener el total
-    console.log(gananciaTotal);
   }
 
-  document.getElementById("gananciaTotal").innerHTML = gananciaTotal;
+  document.getElementById("gananciaTotal").innerHTML = "$" + gananciaTotal;
 }
 
 
@@ -177,6 +186,7 @@ function obtenerGananciaTotal(){
 
 
 function ejecutarFunciones() { //ESTA FUNCION AGRUPA EL CONJUNTO DE FUNCIONES A EJECUTAR CUNDO APRETAMOS SIMULAR
+    inicializar();
     obtenerTipoMer(); //ENTONCES HACE TODO AUTOMATICO
     obtenerUnidVen();
     obtenerVentas();
@@ -188,5 +198,4 @@ function ejecutarFunciones() { //ESTA FUNCION AGRUPA EL CONJUNTO DE FUNCIONES A 
     obtenerCostoOportunidad();
     obtenerGanancia();
     obtenerGananciaTotal();
-
 }
