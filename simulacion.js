@@ -30,9 +30,9 @@ function obtenerTipoMer(){
 
 function obtenerUnidVen(){
     for (i = 0; i < 12; i++) { 
-        if (tm[i]="Lento") {
+        if (tm[i]=="Lento") {
             cv.push(10000);
-          } else if (tm[i]="Estable") {
+          } else if (tm[i]=="Estable") {
             cv.push(14000);
           } else {
             cv.push(22000);
@@ -47,27 +47,30 @@ function obtenerUnidVen(){
 
 }
 
-function obtenerTotalVentas(){
+function obtenerVentas(){
     for (i = 0; i < 12; i++) { 
-        if (tm[i]="Lento") {
-            cv.push(10000);
-          } else if (tm[i]="Estable") {
-            cv.push(14000);
+        if (tm[i]=="Lento") {
+            tv.push(cv[i]*15000);
+          } else if (tm[i]=="Estable") {
+            tv.push(cv[i]*12000);
           } else {
-            cv.push(22000);
+            tv.push(cv[i]*8000);
           }
       }
 
       for (i = 1; i < 13; i++) { 
-        mes = "CantVent"+i;
-        console.log(mes);
-        document.getElementById(mes).innerHTML = cv[i-1];
+        id = "TotVent"+i;
+        console.log(tm[i-1]);
+        document.getElementById(id).innerHTML = tv[i-1];
       }
 
 }
 
 
+
+
 function ejecutarFunciones() { //ESTA FUNCION AGRUPA EL CONJUNTO DE FUNCIONES A EJECUTAR CUNDO APRETAMOS SIMULAR
     obtenerTipoMer(); //ENTONCES HACE TODO AUTOMATICO
     obtenerUnidVen();
+    obtenerVentas();
 }
