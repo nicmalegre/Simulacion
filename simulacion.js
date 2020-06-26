@@ -1,15 +1,21 @@
 //DEFINO VARIABLES GLOBALES
-  var tm = []; //CREO UN ARREGLO DONDE VOY A IR CARGANDO QUE TIPO DE MERCADO SALE PARA CADA MES 
-  var cv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO  LA CANTIDAD DE UNIDADES VENDIDAS PARA CADA MES (UNIDADES)
-  var tv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LAS VENTAS PARA CADA MES (PLATA)
-  var cu = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO EL COSTO POR UNIDAD DE CADA MES
-  var ct = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LOS COSTOS TOTALES DE CADA MES
   var cantprod = []; //CREO UN ARREGLO PARA ALMACENAR CUANTOS PROD PRODUCIDOS HAY PARA CADA MES
   var uniddisp = []; //CREO UN ARREGLO PARA ALMACENAR LAS UNIDADES DISPONIBLES POR MES
+  var cu = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO EL COSTO POR UNIDAD DE CADA MES
+  var ct = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LOS COSTOS TOTALES DE CADA MES
+  var tm = []; //CREO UN ARREGLO DONDE VOY A IR CARGANDO QUE TIPO DE MERCADO SALE PARA CADA MES 
+  var demandaDelMes = []; //CREO UN ARREGLO PARA VER CUANTA DEMANDA TUVIMOS EN CADA MES
+  var cv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO  LA CANTIDAD DE UNIDADES VENDIDAS PARA CADA MES (UNIDADES)
+  var tv = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LAS VENTAS PARA CADA MES (PLATA)
+  
+  
   var demnosat = []; //CREO UN ARREGLO PARA ALMACENAR LA DEMANDA NO SATISFECHA DE CADA MES
   var costOp = []; //CREO UN ARREGLO PARA ALMACENAR EL COSTO DE OPORTUNIDAD DE CADA MES
   var ganancia = []; //EN ESTE ARREGLO VOY ALMACENANDO LA GANANCIA DE CADA MES
 
+
+
+// A PARTIR DE ACA PARA ABAJO VAN TODAS LAS FUNCIONES
 function inicializar(){
    tm = []; 
    cv = [];
@@ -20,79 +26,8 @@ function inicializar(){
    uniddisp = [];
    demnosat = []; 
    costOp = []; 
-   ganancia = []; 
-}
-
-// A PARTIR DE ACA PARA ABAJO VAN TODAS LAS FUNCIONES
-
-function obtenerTipoMer(){ 
-    for (i = 0; i < 12; i++) { //EN ESTA FUNCION POR CADA MES TIRO UN ALEATORIO Y DEPENDIENDO DE ESTE AGREGO EL TIPO DE MERCADO AL ARREGLO
-        aleatorio = Math.random();
-        if (aleatorio<0.125) {
-            tm.push("Lento");
-          } else if (aleatorio<0.75) {
-            tm.push("Estable");
-          } else {
-            tm.push("Demandante");
-          }
-      }
-
-      for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
-        id = "TM"+i;
-        document.getElementById(id).innerHTML = tm[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
-      }
-}
-
-function obtenerUnidVen(){ //FUNCION PARA CARGAR EL ARREGLO DE UNIDADES VENDIDAS Y LUEGO MOSTRARLO EN EL HTML POR MEDIO DEL ID
-    for (i = 0; i < 12; i++) { 
-        if (tm[i]=="Lento") {
-            cv.push(10000);
-          } else if (tm[i]=="Estable") {
-            cv.push(14000);
-          } else {
-            cv.push(22000);
-          }
-      }
-
-      for (i = 1; i < 13; i++) { 
-        id = "CantVent"+i;
-        document.getElementById(id).innerHTML = cv[i-1];
-      }
-}
-
-function obtenerVentas(){//FUNCION PARA CARGAR EL ARREGLO DE VENTAS Y LUEGO MOSTRARLO EN EL HTML POR MEDIO DEL ID
-    for (i = 0; i < 12; i++) { 
-        if (tm[i]=="Lento") {
-            tv.push(cv[i]*15000);
-          } else if (tm[i]=="Estable") {
-            tv.push(cv[i]*12000);
-          } else {
-            tv.push(cv[i]*8000);
-          }
-      }
-
-      for (i = 1; i < 13; i++) { 
-        id = "TotVent"+i;
-        document.getElementById(id).innerHTML = tv[i-1];
-      }
-}
-
-function obtenerCostoUnidad(){ 
-  for (i = 0; i < 12; i++) { //EN ESTA FUNCION POR CADA MES TIRO UN ALEATORIO Y DEPENDIENDO DE ESTE AGREGO EL TIPO DE MERCADO AL ARREGLO
-      aleatorio = Math.random();
-      if (aleatorio<0.13) {
-          cu.push(4000);
-        } else if (aleatorio<0.71) {
-          cu.push(4500);
-        } else {
-          cu.push(5200);
-        }
-    }
-
-    for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
-      id = "CostUn"+i;
-      document.getElementById(id).innerHTML = cu[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
-    }
+   ganancia = [];
+   demandaDelMes = []; 
 }
 
 function obtenerCantProducida(){ 
@@ -139,6 +74,24 @@ function obtenerUnidadesDisp(){//Esta funcion es para obtener cuantas unidades t
   }
 }
 
+function obtenerCostoUnidad(){ 
+  for (i = 0; i < 12; i++) { //EN ESTA FUNCION POR CADA MES TIRO UN ALEATORIO Y DEPENDIENDO DE ESTE AGREGO EL TIPO DE MERCADO AL ARREGLO
+      aleatorio = Math.random();
+      if (aleatorio<0.13) {
+          cu.push(4000);
+        } else if (aleatorio<0.71) {
+          cu.push(4500);
+        } else {
+          cu.push(5200);
+        }
+    }
+
+    for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
+      id = "CostUn"+i;
+      document.getElementById(id).innerHTML = cu[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
+    }
+}
+
 function obtenerCostoTotal(){// ANTES DE ESTA FUNCION TENEMOS QUE EJECUTAR LA DE OBTENERCANTPRODUCIDA O SINO NO PUEDE MULTIPLICAR
   for (i = 0; i < 12; i++) { //MULTIPLICO EL COSTO POR UNIDAD CON LA CANTIDAD DE PRODUCTOS PRODUCIDOS Y GUARDO EN EL ARREGLO ct
       ct.push(cu[i]*cantprod[i]);
@@ -150,10 +103,77 @@ function obtenerCostoTotal(){// ANTES DE ESTA FUNCION TENEMOS QUE EJECUTAR LA DE
     }
 }
 
+function obtenerTipoMer(){ 
+    for (i = 0; i < 12; i++) { //EN ESTA FUNCION POR CADA MES TIRO UN ALEATORIO Y DEPENDIENDO DE ESTE AGREGO EL TIPO DE MERCADO AL ARREGLO
+        aleatorio = Math.random();
+        if (aleatorio<0.125) {
+            tm.push("Lento");
+          } else if (aleatorio<0.75) {
+            tm.push("Estable");
+          } else {
+            tm.push("Demandante");
+          }
+      }
+
+      for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
+        id = "TM"+i;
+        document.getElementById(id).innerHTML = "<b>" + tm[i-1] + "</b>"; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
+      }
+}
+
+function obtenerDemanda(){//Con esta funcion vemos cuanto nos demanda el mercado para este mes
+  for (i = 0; i < 12; i++) { 
+    if (tm[i]=="Lento") {
+      demandaDelMes.push(10000);
+      } else if (tm[i]=="Estable") {
+        demandaDelMes.push(14000);
+      } else {
+        demandaDelMes.push(22000);
+      }
+  }
+
+  for (i = 1; i < 13; i++) { 
+    id = "Demanda"+i;
+    document.getElementById(id).innerHTML = demandaDelMes[i-1];
+  }
+}
+
+function obtenerUnidVen(){ //FUNCION PARA CARGAR EL ARREGLO DE UNIDADES VENDIDAS Y LUEGO MOSTRARLO EN EL HTML POR MEDIO DEL ID
+    for (i = 0; i < 12; i++) { 
+        if (demandaDelMes[i]>uniddisp[i]) {//Si mi demanda es mayor a mis unidades disponibles solo le vendo mis unidades disponibles
+            cv.push(uniddisp[i]);
+          } else{ 
+            cv.push(demandaDelMes[i]);
+          }
+      }
+
+      for (i = 1; i < 13; i++) { 
+        id = "CantVent"+i;
+        document.getElementById(id).innerHTML = cv[i-1];
+      }
+}
+
+function obtenerVentas(){//FUNCION PARA CARGAR EL ARREGLO DE VENTAS Y LUEGO MOSTRARLO EN EL HTML POR MEDIO DEL ID
+    for (i = 0; i < 12; i++) { 
+        if (tm[i]=="Lento") {
+            tv.push(cv[i]*15000);
+          } else if (tm[i]=="Estable") {
+            tv.push(cv[i]*12000);
+          } else {
+            tv.push(cv[i]*8000);
+          }
+      }
+
+      for (i = 1; i < 13; i++) { 
+        id = "TotVent"+i;
+        document.getElementById(id).innerHTML = tv[i-1];
+      }
+}
+
 function obtenerDemandaNoSatis(){
   for (i = 0; i < 12; i++) { 
-    if (cv[i]>cantprod[i]) {//SI CANT UNID VENDIDAS ES MAYOR A CANT UNIDADES PRODUCIDAS QUIERE DECIR QUE TENEMOS DEMANDA NO SATISFECHA
-      demnosat.push(cv[i]-cantprod[i]); //Agrego a demnosat cuantas unidades son las que no pude satisfacer
+    if (demandaDelMes[i]>uniddisp[i]) {//SI CANT UNID VENDIDAS ES MAYOR A CANT UNIDADES PRODUCIDAS QUIERE DECIR QUE TENEMOS DEMANDA NO SATISFECHA
+      demnosat.push(demandaDelMes[i]-uniddisp[i]); //Agrego a demnosat cuantas unidades son las que no pude satisfacer
     } else {
       demnosat.push(0); //Agrego a demnosat un cero simplemente porque no tengo demanda no satisfechas
     } 
@@ -205,18 +225,18 @@ function obtenerGananciaTotal(){
 
 
 
-
-
 function ejecutarFunciones() { //ESTA FUNCION AGRUPA EL CONJUNTO DE FUNCIONES A EJECUTAR CUNDO APRETAMOS SIMULAR
     inicializar();
-    obtenerTipoMer(); //ENTONCES HACE TODO AUTOMATICO
-    obtenerUnidVen();
-    obtenerVentas();
-    obtenerCostoUnidad();
     obtenerCantProducida();
-    obtenerUnidadesDisp();
+    
+    obtenerCostoUnidad();
     obtenerCostoTotal();//Hay que tener cuidado de ejecutar esta despues de obtenerCantPruducida 
                         //porque si no tenemos cuantas unidades producimos no podemos saber el costo total
+    obtenerTipoMer(); //ENTONCES HACE TODO AUTOMATICO
+    obtenerDemanda();
+    obtenerUnidVen();
+    obtenerVentas();
+    obtenerUnidadesDisp(); //Esta funcion tiene que estar despues de obtener ventas porque sino no puede calcular el nuevo stock
     obtenerDemandaNoSatis();
     obtenerCostoOportunidad();
     obtenerGanancia();
