@@ -5,6 +5,7 @@
   var cu = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO EL COSTO POR UNIDAD DE CADA MES
   var ct = [];//CREO UN ARREGLO DONDE VOY A IR CARGANDO LOS COSTOS TOTALES DE CADA MES
   var cantprod = []; //CREO UN ARREGLO PARA ALMACENAR CUANTOS PROD PRODUCIDOS HAY PARA CADA MES
+  var uniddisp = []; //CREO UN ARREGLO PARA ALMACENAR LAS UNIDADES DISPONIBLES POR MES
   var demnosat = []; //CREO UN ARREGLO PARA ALMACENAR LA DEMANDA NO SATISFECHA DE CADA MES
   var costOp = []; //CREO UN ARREGLO PARA ALMACENAR EL COSTO DE OPORTUNIDAD DE CADA MES
   var ganancia = []; //EN ESTE ARREGLO VOY ALMACENANDO LA GANANCIA DE CADA MES
@@ -15,7 +16,8 @@ function inicializar(){
    tv = [];
    cu = [];
    ct = [];
-   cantprod = []; 
+   cantprod = [];
+   uniddisp = [];
    demnosat = []; 
    costOp = []; 
    ganancia = []; 
@@ -115,6 +117,28 @@ function obtenerCantProducida(){
     }
 }
 
+function obtenerUnidadesDisp(){//Esta funcion es para obtener cuantas unidades tenemos disponibles por mes
+  var sobraMesAnterior = 0;
+  for (i = 0; i < 12; i++) { 
+    if (i==0){//Si i=0 quiere decir que es el Mes 1
+      uniddisp.push(cantprod[i]); //El primer mes el valor de unidades disponibles es el valor de cantidad producidas. No hay nada anterior
+    } else{
+      if ((uniddisp[i-1]-cv[i-1])>0){ //Si unidades disponibles del mes anterior - cantidad vendidas del mes anterior 
+                                      //es mayor a 0 quiere decir que hay sobrante el mes anterior y asigno ese sobrante a la variable
+        sobraMesAnterior = (uniddisp[i-1]-cv[i-1]);
+      } else {
+        sobraMesAnterior = 0; //Si no hay sobrante entonces le asignamos 0 nomás
+      }
+      uniddisp.push(cantprod[i]+sobraMesAnterior); //Agrego en unidades disponibles la cantidad producida mas lo que sobro el mes anterior 
+    }
+  }
+
+  for (i = 1; i < 13; i++) {//POR CADA MES LE VOY PASANDO EL VALOR QUE ESTA EN EL ARREGLO 
+    id = "UnidDisp"+i;
+    document.getElementById(id).innerHTML = uniddisp[i-1]; //Hago i-1 porque este ciclo va de 1 a 12 y el arreglo de 0 a 11
+  }
+}
+
 function obtenerCostoTotal(){// ANTES DE ESTA FUNCION TENEMOS QUE EJECUTAR LA DE OBTENERCANTPRODUCIDA O SINO NO PUEDE MULTIPLICAR
   for (i = 0; i < 12; i++) { //MULTIPLICO EL COSTO POR UNIDAD CON LA CANTIDAD DE PRODUCTOS PRODUCIDOS Y GUARDO EN EL ARREGLO ct
       ct.push(cu[i]*cantprod[i]);
@@ -190,6 +214,7 @@ function ejecutarFunciones() { //ESTA FUNCION AGRUPA EL CONJUNTO DE FUNCIONES A 
     obtenerVentas();
     obtenerCostoUnidad();
     obtenerCantProducida();
+    obtenerUnidadesDisp();
     obtenerCostoTotal();//Hay que tener cuidado de ejecutar esta despues de obtenerCantPruducida 
                         //porque si no tenemos cuantas unidades producimos no podemos saber el costo total
     obtenerDemandaNoSatis();
