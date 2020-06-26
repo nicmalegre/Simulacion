@@ -13,6 +13,8 @@
   var costOp = []; //CREO UN ARREGLO PARA ALMACENAR EL COSTO DE OPORTUNIDAD DE CADA MES
   var ganancia = []; //EN ESTE ARREGLO VOY ALMACENANDO LA GANANCIA DE CADA MES
 
+  var replicasGanacia = []; 
+
 
 
 // A PARTIR DE ACA PARA ABAJO VAN TODAS LAS FUNCIONES
@@ -218,17 +220,30 @@ function obtenerGananciaTotal(){
   for (i = 0; i < 12; i++) { 
     gananciaTotal = gananciaTotal + ganancia[i]; //Sumo en una variable las ganancias de cada mes para obtener el total
   }
-
+  replicasGanacia.push(gananciaTotal);
   document.getElementById("gananciaTotal").innerHTML = "$" + gananciaTotal;
 }
 
+function promedio(){
+  document.getElementById("div-escondido").style.display = "block";
+  var promedio;
+  var sumatorias = 0;
+
+  for (i = 0; i < replicasGanacia.length; i++) { 
+    sumatorias = sumatorias + replicasGanacia[i]; //Sumo en una variable las ganancias de cada mes para obtener el total
+  }
+  promedio = (sumatorias/(replicasGanacia.length));
+
+  document.getElementById("tex-promedio").innerHTML = "El promedio obtenido con " + replicasGanacia.length + " réplica/s es de:";
+  document.getElementById("promedio").innerHTML = "$"+promedio;
+
+}
 
 
 
 function ejecutarFunciones() { //ESTA FUNCION AGRUPA EL CONJUNTO DE FUNCIONES A EJECUTAR CUNDO APRETAMOS SIMULAR
     inicializar();
     obtenerCantProducida();
-    
     obtenerCostoUnidad();
     obtenerCostoTotal();//Hay que tener cuidado de ejecutar esta despues de obtenerCantPruducida 
                         //porque si no tenemos cuantas unidades producimos no podemos saber el costo total
@@ -241,4 +256,5 @@ function ejecutarFunciones() { //ESTA FUNCION AGRUPA EL CONJUNTO DE FUNCIONES A 
     obtenerCostoOportunidad();
     obtenerGanancia();
     obtenerGananciaTotal();
+    promedio();
 }
